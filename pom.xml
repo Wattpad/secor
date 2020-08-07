@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.pinterest</groupId>
@@ -39,12 +37,9 @@
     </scm>
 
     <properties>
-        <maven.compiler.source>1.6</maven.compiler.source>
-        <maven.compiler.target>1.6</maven.compiler.target>
         <encoding>UTF-8</encoding>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <parquet.version>1.11.0</parquet.version>
-
         <!-- Whether we will using legazy old consumer kafka-legacy or new consumer kafka-2.0.0 -->
         <!-- Name of the directory below src/main/config that contains kafka-version-specific settings -->
         <kafka.properties>kafka-legacy</kafka.properties>
@@ -60,6 +55,7 @@
             <url>https://oss.sonatype.org/content/repositories/snapshots</url>
         </snapshotRepository>
     </distributionManagement>
+
     <dependencyManagement>
         <dependencies>
             <!-- Azure pulls in 2.6 while kafka-2.11 pulls in 2.9.1 -->
@@ -193,7 +189,6 @@
             <artifactId>commons-configuration</artifactId>
             <version>1.10</version>
         </dependency>
-
         <dependency>
             <groupId>org.apache.hadoop</groupId>
             <artifactId>hadoop-common</artifactId>
@@ -245,7 +240,6 @@
             <artifactId>hadoop-openstack</artifactId>
             <version>2.9.2</version>
         </dependency>
-
         <!-- Parquet file format dependencies -->
         <dependency>
             <groupId>org.apache.parquet</groupId>
@@ -324,16 +318,19 @@
             <groupId>org.mockito</groupId>
             <artifactId>mockito-core</artifactId>
             <version>3.3.3</version>
+            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.powermock</groupId>
             <artifactId>powermock-api-mockito2</artifactId>
             <version>2.0.7</version>
+            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.powermock</groupId>
             <artifactId>powermock-module-junit4</artifactId>
             <version>2.0.7</version>
+            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.msgpack</groupId>
@@ -478,58 +475,58 @@
                         </configuration>
                     </execution>
                 </executions>
-		    </plugin>
-			<!-- Protobuf source generator plug-in -->
-			<plugin>
-				<groupId>com.github.os72</groupId>
-				<artifactId>protoc-jar-maven-plugin</artifactId>
-				<version>3.11.4</version>
-				<executions>
-					<execution>
-						<id>protobuf-test-sources</id>
-						<phase>generate-test-sources</phase>
-						<goals>
-							<goal>run</goal>
-						</goals>
-						<configuration>
-							<protocVersion>3.1.0</protocVersion>
-							<includeDirectories>
-								<include>src/test/protobuf</include>
-							</includeDirectories>
-							<inputDirectories>
-								<include>src/test/protobuf</include>
-							</inputDirectories>
+            </plugin>
+            <!-- Protobuf source generator plug-in -->
+            <plugin>
+                <groupId>com.github.os72</groupId>
+                <artifactId>protoc-jar-maven-plugin</artifactId>
+                <version>3.11.4</version>
+                <executions>
+                    <execution>
+                        <id>protobuf-test-sources</id>
+                        <phase>generate-test-sources</phase>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <configuration>
+                            <protocVersion>3.1.0</protocVersion>
+                            <includeDirectories>
+                                <include>src/test/protobuf</include>
+                            </includeDirectories>
+                            <inputDirectories>
+                                <include>src/test/protobuf</include>
+                            </inputDirectories>
                             <includeStdTypes>true</includeStdTypes>
-							<outputTargets>
-								<outputTarget>
-									<type>java</type>
-									<addSources>none</addSources>
-									<outputDirectory>target/generated-test-sources/protobuf/gen-java</outputDirectory>
-								</outputTarget>
-							</outputTargets>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
-			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>build-helper-maven-plugin</artifactId>
-				<version>3.2.0</version>
-				<executions>
-					<execution>
-						<id>add-test-sources</id>
-						<phase>generate-test-sources</phase>
-						<goals>
-							<goal>add-test-source</goal>
-						</goals>
-						<configuration>
-							<sources>
-								<source>target/generated-test-sources/protobuf/gen-java</source>
-							</sources>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
+                            <outputTargets>
+                                <outputTarget>
+                                    <type>java</type>
+                                    <addSources>none</addSources>
+                                    <outputDirectory>target/generated-test-sources/protobuf/gen-java</outputDirectory>
+                                </outputTarget>
+                            </outputTargets>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>build-helper-maven-plugin</artifactId>
+                <version>3.2.0</version>
+                <executions>
+                    <execution>
+                        <id>add-test-sources</id>
+                        <phase>generate-test-sources</phase>
+                        <goals>
+                            <goal>add-test-source</goal>
+                        </goals>
+                        <configuration>
+                            <sources>
+                                <source>target/generated-test-sources/protobuf/gen-java</source>
+                            </sources>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
             <!-- Thrift source generate plugin. -->
             <plugin>
                 <groupId>com.twitter</groupId>
@@ -670,8 +667,8 @@
                                 <goals>
                                     <goal>jar-no-fork</goal>
                                 </goals>
-                              </execution>
-                          </executions>
+                            </execution>
+                        </executions>
                     </plugin>
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
@@ -683,23 +680,23 @@
                                 <goals>
                                     <goal>jar</goal>
                                 </goals>
-                              </execution>
-                          </executions>
+                            </execution>
+                        </executions>
                         <configuration>
                             <excludePackageNames>com.pinterest.secor.*</excludePackageNames>
                         </configuration>
                     </plugin>
                     <plugin>
-                      <groupId>org.apache.maven.plugins</groupId>
-                      <artifactId>maven-gpg-plugin</artifactId>
-                      <version>1.6</version>
-                      <executions>
-                          <execution>
-                              <id>sign-artifacts</id>
-                              <phase>verify</phase>
-                              <goals>
-                                  <goal>sign</goal>
-                              </goals>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-gpg-plugin</artifactId>
+                        <version>1.6</version>
+                        <executions>
+                            <execution>
+                                <id>sign-artifacts</id>
+                                <phase>verify</phase>
+                                <goals>
+                                    <goal>sign</goal>
+                                </goals>
                             </execution>
                         </executions>
                     </plugin>
@@ -761,7 +758,7 @@
                     <groupId>com.twitter</groupId>
                     <artifactId>ostrich_2.10</artifactId>
                     <version>9.18.0</version>
-                 </dependency>
+                </dependency>
             </dependencies>
         </profile>
         <profile>
@@ -800,7 +797,7 @@
                     <groupId>com.twitter</groupId>
                     <artifactId>ostrich_2.11</artifactId>
                     <version>9.27.0</version>
-              </dependency>
+                </dependency>
             </dependencies>
         </profile>
         <profile>

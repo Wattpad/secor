@@ -1,0 +1,14 @@
+.DS_Store
+.dockerignore
+.git
+.gitignore
+.travis.yml
+*.md
+Makefile
+LICENSE
+ci/
+cloudbuild.yaml
+containers/
+deploys/
+pom.xml
+docker-compose.yaml
