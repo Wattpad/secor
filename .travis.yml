@@ -1,10 +1,5 @@
 language: java
 
-addons:
-  apt:
-    packages:
-      - awscli
-
 services:
   - docker
 
@@ -21,7 +16,7 @@ script:
 
 deploy:
   provider: script
-  script: bash ci/ecr_push
+  script: bash ci/travis/ecr_push
   on:
     branch: master
   edge: true
