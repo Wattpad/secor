@@ -1,6 +1,6 @@
 # Pinterest Secor
 
-[![Build Status](https://travis-ci.com/Wattpad/secor.svg?token=LAxVCu1iuvULW9Kd4zEx&branch=wattpad-ecr)](https://travis-ci.com/Wattpad/secor)
+[![Build Status](https://travis-ci.com/Wattpad/secor.svg?branch=master)](https://travis-ci.com/Wattpad/secor)
 
 Secor is a service persisting [Kafka] logs to [Amazon S3], [Google Cloud Storage], [Microsoft Azure Blob Storage] and [Openstack Swift].
 
