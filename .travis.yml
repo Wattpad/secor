@@ -18,5 +18,5 @@ deploy:
   provider: script
   script: bash ci/travis/ecr_push
   on:
-    branch: master
+    branch: wattpad-ecr
   edge: true
